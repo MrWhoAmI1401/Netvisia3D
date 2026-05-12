@@ -1,0 +1,151 @@
+/* =========================
+   TEXTURE KABEL
+========================= */
+.kabel-putih-oranye {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff,
+    #ffffff 10px,
+    #f97316 10px,
+    #f97316 20px
+  );
+}
+
+.kabel-oranye {
+  background-color: #f97316;
+}
+
+.kabel-putih-hijau {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff,
+    #ffffff 10px,
+    #22c55e 10px,
+    #22c55e 20px
+  );
+}
+
+.kabel-biru {
+  background-color: #3b82f6;
+}
+
+.kabel-putih-biru {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff,
+    #ffffff 10px,
+    #3b82f6 10px,
+    #3b82f6 20px
+  );
+}
+
+.kabel-hijau {
+  background-color: #22c55e;
+}
+
+.kabel-putih-coklat {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff,
+    #ffffff 10px,
+    #78350f 10px,
+    #78350f 20px
+  );
+}
+
+.kabel-coklat {
+  background-color: #78350f;
+}
+
+/* =========================
+   RJ45 CONTAINER
+========================= */
+.rj45-container {
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+}
+
+/* =========================
+   KONEKTOR
+========================= */
+.konektor-rj45 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid #cbd5e1;
+  z-index: 10;
+  backdrop-filter: blur(3px);
+}
+
+/* =========================
+   PIN EMAS
+========================= */
+.pin-emas {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 10px;
+}
+
+.pin {
+  width: 4px;
+  height: 15px;
+  background: #fbbf24;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgba(251, 191, 36, 0.5);
+}
+
+/* =========================
+   AREA KABEL
+========================= */
+.area-kabel {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(50px);
+}
+
+/* =========================
+   ANIMASI COLOK
+========================= */
+.colok-masuk {
+  transform: translateY(0px) !important;
+}
+
+/* =========================
+   SORTABLE GHOST
+========================= */
+.sortable-ghost {
+  opacity: 0.4;
+}
+
+.sortable-chosen {
+  cursor: grabbing !important;
+}
+
+.sortable-drag {
+  transform: scale(1.03);
+  z-index: 99;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .pin {
+    width: 3px;
+    height: 12px;
+  }
+
+  .rj45-container {
+    height: 110px;
+  }
+
+  .area-kabel {
+    transform: translateY(45px);
+  }
+}
