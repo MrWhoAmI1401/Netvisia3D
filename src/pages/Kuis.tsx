@@ -5,14 +5,11 @@ import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import {
-  ClipboardList,
-  ChevronRight,
-  ChevronLeft
-} from "lucide-react";
+import { ClipboardList, ChevronRight, ChevronLeft } from "lucide-react";
 import Layout from "@/components/Layout";
 import { toast } from "sonner";
 
+// Interface tipe data untuk soal
 interface Question {
   question: string;
   options: string[];
@@ -22,129 +19,115 @@ interface Question {
 const Kuis = () => {
   const navigate = useNavigate();
 
+  // Data kuis disesuaikan 100% dengan materi Buku Informatika SMA Kelas XI Bab 4
   const questions: Question[] = [
     {
-      question:
-        "Topologi jaringan yang semua perangkat terhubung ke satu switch/hub pusat adalah...",
+      question: "Topologi jaringan di mana setiap node terkoneksi melalui node konektor pusat (tengah) dan sangat mudah dimodifikasi tanpa mematikan jaringan lain disebut...",
       options: [
-        "Topologi Ring",
-        "Topologi Star",
         "Topologi Bus",
+        "Topologi Star (Bintang)",
+        "Topologi Ring (Cincin)",
         "Topologi Mesh"
       ],
       correct: 1
     },
     {
-      question:
-        "Perangkat yang berfungsi menghubungkan berbagai jaringan dan mengatur lalu lintas data adalah...",
+      question: "Pada topologi Ring (Cincin), pengiriman data diatur dengan sebuah prinsip spesifik. Prinsip apakah yang digunakan untuk menunjukkan node mana yang dapat mengirim data?",
       options: [
-        "Hub",
-        "Switch",
-        "Router",
-        "Repeater"
+        "Packet Switching",
+        "Error Checking",
+        "Token Passing",
+        "Circuit Switching"
       ],
       correct: 2
     },
     {
-      question:
-        "Kabel jaringan yang menggunakan cahaya untuk transmisi data adalah...",
+      question: "Dalam Model Jaringan OSI (Open System Interconnection), lapisan yang bertanggung jawab untuk pengalamatan host pengirim dan penerima secara unik pada jaringan (seperti IP Address) adalah...",
       options: [
-        "UTP",
-        "STP",
-        "Fiber Optic",
-        "Coaxial"
+        "Data Link Layer",
+        "Application Layer",
+        "Transport Layer",
+        "Network Layer"
       ],
-      correct: 2
+      correct: 3
     },
     {
-      question: "Format IP Address yang benar adalah...",
+      question: "Protokol HTTP, FTP, dan DNS berinteraksi langsung dengan pengguna aplikasi. Protokol-protokol ini berada pada layer OSI yang mana?",
       options: [
-        "192.168.1",
-        "192.168.1.256",
-        "192.168.1.100",
-        "192.168.1.1.1"
+        "Session Layer",
+        "Application Layer",
+        "Presentation Layer",
+        "Physical Layer"
       ],
-      correct: 2
+      correct: 1
     },
     {
-      question: "Fungsi dari Subnet Mask adalah...",
+      question: "Struktur dari sebuah paket data terdiri dari tiga bagian penting. Bagian manakah yang bertugas memuat alamat IP pengirim dan IP penerima?",
       options: [
-        "Membagi jaringan menjadi sub-jaringan",
-        "Menghubungkan ke internet",
-        "Mengenkripsi data",
-        "Mempercepat koneksi"
+        "Packet Header",
+        "Packet Payload",
+        "Packet Trailer",
+        "Packet Switch"
       ],
       correct: 0
     },
     {
-      question:
-        "Standar pengurutan warna kabel UTP yang paling umum digunakan adalah...",
+      question: "Manakah pernyataan yang TIDAK TEPAT mengenai metode pengiriman data menggunakan Packet Switching?",
       options: [
-        "T568A",
-        "T568B",
-        "T568C",
-        "T568D"
+        "Paket data dapat dikirim tanpa jalur khusus (dedicated channel).",
+        "Sangat ideal dan bebas jeda (delay) untuk pengiriman data berkualitas tinggi seperti voice call.",
+        "Router dapat melakukan pengiriman ulang (rerouting) jika ada jalur yang sibuk.",
+        "Setiap paket bisa melewati jalur independen yang berbeda-beda."
       ],
       correct: 1
     },
     {
-      question:
-        "Perangkat yang menghubungkan komputer dalam satu jaringan lokal adalah...",
+      question: "Salah satu metode pendeteksian kesalahan data (error checking) menggunakan perhitungan bit tambahan di ujung paling kiri untuk memastikan jumlah bit 1 selalu genap atau ganjil. Metode ini disebut...",
       options: [
-        "Router",
-        "Modem",
-        "Switch",
-        "Gateway"
+        "Checksum",
+        "Forward Error Correction",
+        "Parity Check",
+        "Modulasi PCM"
       ],
       correct: 2
     },
     {
-      question:
-        "Default Gateway berfungsi sebagai...",
+      question: "Dalam mekanisme pengecekan kesalahan menggunakan Checksum, kesimpulan apa yang didapat jika hasil perhitungan 'Komplemen Sum' tidak sama dengan 0 (nol)?",
       options: [
-        "Alamat server DNS",
-        "Pintu gerbang ke jaringan lain/internet",
-        "Alamat IP komputer",
-        "Nama jaringan"
+        "Tidak ada error pada pengiriman data",
+        "Sinyal analog berubah menjadi digital",
+        "Terdapat error atau data corrupted pada proses pengiriman",
+        "Proses transmisi selesai dengan sempurna"
+      ],
+      correct: 2
+    },
+    {
+      question: "Pada Transmisi Digital (Line Coding), metode pengkodean yang merepresentasikan bilangan biner menggunakan tiga tingkat tegangan (positif, nol, dan negatif) adalah...",
+      options: [
+        "Unipolar Encoding",
+        "Bipolar Encoding",
+        "Polar NRZ-L Encoding",
+        "Manchester Encoding"
       ],
       correct: 1
     },
     {
-      question:
-        "Topologi yang setiap perangkat terhubung ke semua perangkat lainnya disebut...",
+      question: "Konversi data analog menjadi sinyal analog dapat dimodifikasi menggunakan beberapa teknik. Teknik modulasi yang menghasilkan kualitas sinyal lebih baik dan derau (noise) yang lebih rendah adalah...",
       options: [
-        "Star",
-        "Ring",
-        "Mesh",
-        "Bus"
-      ],
-      correct: 2
-    },
-    {
-      question:
-        "DNS (Domain Name System) berfungsi untuk...",
-      options: [
-        "Mengenkripsi data",
-        "Menerjemahkan nama domain ke IP address",
-        "Mempercepat internet",
-        "Memblokir virus"
+        "Amplitude Modulation (AM)",
+        "Frequency Modulation (FM)",
+        "Phase Modulation (PM)",
+        "Pulse Code Modulation (PCM)"
       ],
       correct: 1
     }
   ];
 
-  const [currentQuestion, setCurrentQuestion] =
-    useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
-  const [answers, setAnswers] = useState<
-    (number | null)[]
-  >(Array(questions.length).fill(null));
-
-  const [selectedAnswer, setSelectedAnswer] =
-    useState<number | null>(null);
-
-  const progress =
-    ((currentQuestion + 1) / questions.length) * 100;
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   const handleAnswerSelect = (value: string) => {
     setSelectedAnswer(parseInt(value));
@@ -152,10 +135,8 @@ const Kuis = () => {
 
   const saveCurrentAnswer = () => {
     if (selectedAnswer === null) return answers;
-
     const updated = [...answers];
     updated[currentQuestion] = selectedAnswer;
-
     setAnswers(updated);
     return updated;
   };
@@ -170,16 +151,15 @@ const Kuis = () => {
 
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
-
-      // reset pilihan biar kosong
-      setSelectedAnswer(null);
+      // Reset pilihan atau gunakan jawaban yang sudah tersimpan jika user kembali ke soal ini
+      setSelectedAnswer(answers[currentQuestion + 1]);
     }
   };
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
+      saveCurrentAnswer(); // Simpan jawaban saat ini sebelum mundur
       const prevIndex = currentQuestion - 1;
-
       setCurrentQuestion(prevIndex);
       setSelectedAnswer(answers[prevIndex]);
     }
@@ -194,31 +174,18 @@ const Kuis = () => {
     const finalAnswers = [...answers];
     finalAnswers[currentQuestion] = selectedAnswer;
 
-    const allAnswered = finalAnswers.every(
-      (answer) => answer !== null
-    );
+    const allAnswered = finalAnswers.every((answer) => answer !== null);
 
     if (!allAnswered) {
-      toast.error(
-        "Jawab semua pertanyaan terlebih dahulu!"
-      );
+      toast.error("Jawab semua pertanyaan terlebih dahulu!");
       return;
     }
 
-    const score = finalAnswers.reduce(
-      (total, answer, index) => {
-        return total +
-          (answer === questions[index].correct
-            ? 10
-            : 0);
-      },
-      0
-    );
+    const score = finalAnswers.reduce((total, answer, index) => {
+      return total + (answer === questions[index].correct ? 10 : 0);
+    }, 0);
 
-    localStorage.setItem(
-      "quizScore",
-      score.toString()
-    );
+    localStorage.setItem("quizScore", score.toString());
 
     toast.success("Kuis selesai! Melihat hasil...");
 
@@ -233,12 +200,10 @@ const Kuis = () => {
         <div className="container mx-auto max-w-4xl">
           <div className="mb-8 animate-fade-in">
             <h1 className="text-4xl font-bold mb-4">
-              Kuis Evaluasi
+              Kuis Evaluasi Jaringan Komputer
             </h1>
-
             <p className="text-muted-foreground text-lg">
-              Uji pemahamanmu tentang materi
-              Jaringan Komputer
+              Uji pemahamanmu berdasarkan materi Bab Jaringan Komputer & Internet Kelas XI.
             </p>
           </div>
 
@@ -247,20 +212,14 @@ const Kuis = () => {
               <div className="flex items-center gap-2">
                 <ClipboardList className="w-5 h-5 text-primary" />
                 <span className="font-semibold">
-                  Pertanyaan {currentQuestion + 1} dari{" "}
-                  {questions.length}
+                  Pertanyaan {currentQuestion + 1} dari {questions.length}
                 </span>
               </div>
-
               <span className="text-sm text-muted-foreground">
                 Progress: {Math.round(progress)}%
               </span>
             </div>
-
-            <Progress
-              value={progress}
-              className="h-2"
-            />
+            <Progress value={progress} className="h-2" />
           </Card>
 
           <Card className="p-8 shadow-large border-2 animate-scale-in">
@@ -268,49 +227,35 @@ const Kuis = () => {
               <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 Pertanyaan {currentQuestion + 1}
               </div>
-
               <h2 className="text-2xl font-semibold leading-relaxed">
                 {questions[currentQuestion].question}
               </h2>
             </div>
 
             <RadioGroup
-              value={
-                selectedAnswer !== null
-                  ? selectedAnswer.toString()
-                  : undefined
-              }
+              value={selectedAnswer !== null ? selectedAnswer.toString() : undefined}
               onValueChange={handleAnswerSelect}
             >
               <div className="space-y-4">
-                {questions[currentQuestion].options.map(
-                  (option, index) => (
+                {questions[currentQuestion].options.map((option, index) => (
+                  <div key={index} className="group">
                     <div
-                      key={index}
-                      className="group"
+                      className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-smooth cursor-pointer hover:border-primary hover:bg-primary/5 ${
+                        selectedAnswer === index
+                          ? "border-primary bg-primary/5"
+                          : "border-border"
+                      }`}
                     >
-                      <div
-                        className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-smooth cursor-pointer hover:border-primary hover:bg-primary/5 ${
-                          selectedAnswer === index
-                            ? "border-primary bg-primary/5"
-                            : "border-border"
-                        }`}
+                      <RadioGroupItem value={index.toString()} id={`option-${index}`} />
+                      <Label
+                        htmlFor={`option-${index}`}
+                        className="flex-1 cursor-pointer text-base leading-relaxed"
                       >
-                        <RadioGroupItem
-                          value={index.toString()}
-                          id={`option-${index}`}
-                        />
-
-                        <Label
-                          htmlFor={`option-${index}`}
-                          className="flex-1 cursor-pointer text-base leading-relaxed"
-                        >
-                          {option}
-                        </Label>
-                      </div>
+                        {option}
+                      </Label>
                     </div>
-                  )
-                )}
+                  </div>
+                ))}
               </div>
             </RadioGroup>
 
@@ -325,12 +270,8 @@ const Kuis = () => {
                 Sebelumnya
               </Button>
 
-              {currentQuestion <
-              questions.length - 1 ? (
-                <Button
-                  onClick={handleNext}
-                  className="flex-1 shadow-medium"
-                >
+              {currentQuestion < questions.length - 1 ? (
+                <Button onClick={handleNext} className="flex-1 shadow-medium">
                   Selanjutnya
                   <ChevronRight className="w-4 h-4 ml-2" />
                 </Button>
